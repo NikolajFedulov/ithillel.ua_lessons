@@ -3,26 +3,22 @@ package ua.ithillel.lessons.lesson4;
 import java.util.Locale;
 
 public class Calculator2 {
-    private final  char PLUS = '+';
-    private final  char MINUS = '-';
-    private final  char MULTIPLY = '*';
-    private final  char DIVIDE = '/';
-    private final char[] OPERATORS = new char[] {PLUS, MINUS, MULTIPLY, DIVIDE} ;
-    public final String OPERATORPLUS = String.valueOf(PLUS);
-    public final String OPERATORMINUS = String.valueOf(MINUS);
-    public final String OPERATORMULTIPLY = String.valueOf(MULTIPLY);
-    public final String OPERATORDIVIDE = String.valueOf(DIVIDE);
-    public final String COMMANDEXIT = "exit";
-    public final String COMMANDHELP = "help";
-    public final String COMMANDM = "m";
-    public final String COMMANDMPL = "m+";
-    public final String COMMANDMMIN = "m-";
-    public final String COMMANDMC = "mc";
+    public final String OPERATOR_PLUS = "+";
+    public final String OPERATOR_MINUS = "-";
+    public final String OPERATOR_MULTIPLY = "*";
+    public final String OPERATOR_DIVIDE = "/";
+    public final String COMMAND_EXIT = "exit";
+    public final String COMMAND_HELP = "help";
+    public final String COMMAND_M = "m";
+    public final String COMMAND_MPL = "m+";
+    public final String COMMAND_MMIN = "m-";
+    public final String COMMAND_MC = "mc";
+    private final String[] OPERATORS = new String[] {OPERATOR_PLUS, OPERATOR_MINUS, OPERATOR_MULTIPLY, OPERATOR_DIVIDE};
+    private final String[] COMMANDS = new String[] {COMMAND_EXIT, COMMAND_HELP, COMMAND_M, COMMAND_MPL, COMMAND_MMIN, COMMAND_MC};
     private double operandOne;
     private double operandTwo;
     private String operatorAndCommand;
     private double memory;
-//    private String[] history = new String[5];
     private double result;
 
     Calculator2(double operandOne, double operandTwo, double memory){
@@ -69,47 +65,41 @@ public class Calculator2 {
         this.result = result;
     }
 
-    public final boolean isExit(){
-        final String EXIT = "exit";
-        return operatorAndCommand.equalsIgnoreCase(EXIT);
-    }
-
     public void parseInputData(String inputText){
-        switch (inputText.toLowerCase(Locale.ROOT)){
-            case COMMANDHELP:
-            case COMMANDEXIT:
-            case COMMANDM:
-            case COMMANDMPL:
-            case COMMANDMMIN:
-            case COMMANDMC: operatorAndCommand = inputText.toLowerCase(Locale.ROOT); break;
-            default:{
-                String inputTextReplace = "";
-                for(char findOperator: OPERATORS){
-                    if(inputText.indexOf(findOperator)>=0) {
-                        operatorAndCommand = String.valueOf(inputText.charAt(inputText.indexOf(findOperator)));
-                        inputTextReplace = inputText.replace(inputText.charAt(inputText.indexOf(findOperator)), ' ');
-                    }
-                }
-
-
-                String[] operand = inputTextReplace.split(" ");
-                try {
-                    if(operand[0].equalsIgnoreCase("memory")){
-                        operandOne = memory;
-                    }
-                    else{
-                        operandOne = Double.parseDouble(operand[0]);
-                    }
-                    if (operand[1].equalsIgnoreCase("memory")){
-                        operandTwo = memory;
-                    }
-                    else {
-                        operandTwo = Double.parseDouble(operand[1]);
-                    }
-
-                } catch (NumberFormatException e){}
+        String inputTextInLC = inputText.toLowerCase(Locale.ROOT);
+        for(String findCommand: COMMANDS){
+            int beginIndexInputText = inputTextInLC.indexOf(findCommand);
+            int endIndexInputText = beginIndexInputText + findCommand.length();
+            if(beginIndexInputText==0){
+                operatorAndCommand = inputTextInLC.substring(beginIndexInputText, endIndexInputText);
             }
         }
+        String inputTextReplace = "";
+        for(String findOperator: OPERATORS){
+            int beginIndexInputText = inputText.toLowerCase(Locale.ROOT).indexOf(findOperator);
+            int endIndexInputText = beginIndexInputText + findOperator.length();
+            if(beginIndexInputText>=0) {
+                operatorAndCommand = inputText.toLowerCase(Locale.ROOT).substring(beginIndexInputText, endIndexInputText);
+                inputTextReplace = inputText.toLowerCase(Locale.ROOT).replace(operatorAndCommand, " ");
+            }
+        }
+        String[] operand = inputTextReplace.split(" ");
+        try {
+            if(operand[0].equalsIgnoreCase("memory")){
+                operandOne = memory;
+            }
+            else{
+                operandOne = Double.parseDouble(operand[0]);
+            }
+            if (operand[1].equalsIgnoreCase("memory")){
+                operandTwo = memory;
+            }
+            else {
+                operandTwo = Double.parseDouble(operand[1]);
+            }
+
+        } catch (NumberFormatException e){}
+
 
 
     }

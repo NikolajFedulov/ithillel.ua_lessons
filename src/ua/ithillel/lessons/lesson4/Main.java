@@ -14,37 +14,37 @@ public class Main {
             System.out.print("> Enter you data: ");
             inputData = scanner.nextLine();
             calc.parseInputData(inputData);
-            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMANDEXIT)) {
+            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMAND_EXIT)) {
                 isExit = false;
             }
-            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMANDHELP)) {
+            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMAND_HELP)) {
                 calc.help();
             }
-            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMANDM)) {
+            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMAND_M)) {
                 calc.toMemory(calc.getResult());
             }
-            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMANDMPL)) {
+            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMAND_MPL)) {
                 calc.addToMemory(calc.getResult());
             }
-            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMANDMMIN)) {
+            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMAND_MMIN)) {
                 calc.subFromMemory(calc.getResult());
             }
-            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMANDMC)) {
+            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.COMMAND_MC)) {
                 calc.memoryClear();
             }
-            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.OPERATORPLUS)) {
+            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.OPERATOR_PLUS)) {
                 result = calc.addition(calc.getOperandOne(), calc.getOperandTwo());
                 calc.setResult(result);
             }
-            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.OPERATORMINUS)) {
+            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.OPERATOR_MINUS)) {
                 result = calc.subtraction(calc.getOperandOne(), calc.getOperandTwo());
                 calc.setResult(result);
             }
-            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.OPERATORMULTIPLY)){
+            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.OPERATOR_MULTIPLY)){
                 result = calc.multiplication(calc.getOperandOne(), calc.getOperandTwo());
                 calc.setResult(result);
             }
-            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.OPERATORDIVIDE)){
+            if (calc.getOperatorAndCommand().equalsIgnoreCase(calc.OPERATOR_DIVIDE)){
                 result = calc.division(calc.getOperandOne(), calc.getOperandTwo());
                 calc.setResult(result);
             }
