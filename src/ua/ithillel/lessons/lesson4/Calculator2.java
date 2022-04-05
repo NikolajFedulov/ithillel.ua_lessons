@@ -13,15 +13,15 @@ public class Calculator2 {
     public final String COMMAND_MPL = "m+";
     public final String COMMAND_MMIN = "m-";
     public final String COMMAND_MC = "mc";
-    private final String[] OPERATORS = new String[] {OPERATOR_PLUS, OPERATOR_MINUS, OPERATOR_MULTIPLY, OPERATOR_DIVIDE};
-    private final String[] COMMANDS = new String[] {COMMAND_EXIT, COMMAND_HELP, COMMAND_M, COMMAND_MPL, COMMAND_MMIN, COMMAND_MC};
-    private double operandOne;
-    private double operandTwo;
-    private String operatorAndCommand;
-    private double memory;
-    private double result;
+    protected final String[] OPERATORS = new String[] {OPERATOR_PLUS, OPERATOR_MINUS, OPERATOR_MULTIPLY, OPERATOR_DIVIDE};
+    protected final String[] COMMANDS = new String[] {COMMAND_EXIT, COMMAND_HELP, COMMAND_M, COMMAND_MPL, COMMAND_MMIN, COMMAND_MC};
+    protected double operandOne;
+    protected double operandTwo;
+    protected String operatorAndCommand;
+    protected double memory;
+    protected double result;
 
-    Calculator2(double operandOne, double operandTwo, double memory){
+    public Calculator2(double operandOne, double operandTwo, double memory){
         this.operandOne = operandOne;
         this.operandTwo = operandTwo;
         operatorAndCommand = "";
@@ -29,15 +29,15 @@ public class Calculator2 {
         result = 0.0;
     }
 
-    Calculator2(){
+    public Calculator2(){
         this(0.0, 0.0, 0.0);
     }
 
-    Calculator2(double operandOne, double operandTwo){
+    public Calculator2(double operandOne, double operandTwo){
         this(operandOne, operandTwo, 0.0);
     }
 
-    Calculator2(double memory){
+    public Calculator2(double memory){
         this(0.0, 0.0, memory);
     }
 
