@@ -1,6 +1,11 @@
 package ua.ithillel.lessons.lesson7;
 
-import ua.ithillel.lessons.lesson6.Operations;
+import ua.ithillel.lessons.lesson7.controller.Operations;
+import ua.ithillel.lessons.lesson7.controller.ParsingInputData;
+import ua.ithillel.lessons.lesson7.model.CommandsAndOperators;
+import ua.ithillel.lessons.lesson7.model.Language;
+import ua.ithillel.lessons.lesson7.view.UserInterface;
+
 import java.util.Scanner;
 
 public class MainCalculator4 {
@@ -11,73 +16,71 @@ public class MainCalculator4 {
         double operandTwo;
 
         boolean isNotExit = true;
-        UserInterface userInterface = new UserInterface();
-        ParsingInputData parsingInputData = new ParsingInputData();
-        Operations operations = new Operations();
         Scanner scanner = new Scanner(System.in);
 
-        userInterface.helpToConsole();
-        userInterface.promptToEnterData();
+        UserInterface.helpToConsole();
+        UserInterface.promptToEnterData();
         do {
             String inputText = scanner.nextLine();
-            String command = parsingInputData.parseCommand(inputText);
+            CommandsAndOperators command = ParsingInputData.parseCommand(inputText);
 
-            if (command.equalsIgnoreCase(Operators.OPERATOR_PLUS.values)) {
-                operandOne = parsingInputData.parseOperandOne(inputText, command, memory);
-                operandTwo = parsingInputData.parseOperandTwo(inputText, command, memory);
-                result = operations.addToResult(operandOne, operandTwo);
+            switch (command) {
+                case OPERATOR_PLUS:
+                    operandOne = ParsingInputData.parseOperandOne(inputText, command, memory);
+                    operandTwo = ParsingInputData.parseOperandTwo(inputText, command, memory);
+                    result = Operations.addToResult(operandOne, operandTwo);
+                    break;
+                case OPERATOR_MINUS:
+                    operandOne = ParsingInputData.parseOperandOne(inputText, command, memory);
+                    operandTwo = ParsingInputData.parseOperandTwo(inputText, command, memory);
+                    result = Operations.subToResult(operandOne, operandTwo);
+                    break;
+                case OPERATOR_MULTIPLY:
+                    operandOne = ParsingInputData.parseOperandOne(inputText, command, memory);
+                    operandTwo = ParsingInputData.parseOperandTwo(inputText, command, memory);
+                    result = Operations.mulToResult(operandOne, operandTwo);
+                    break;
+                case OPERATOR_DIVIDE:
+                    operandOne = ParsingInputData.parseOperandOne(inputText, command, memory);
+                    operandTwo = ParsingInputData.parseOperandTwo(inputText, command, memory);
+                    result = Operations.divToResult(operandOne, operandTwo);
+                    break;
+                case COMMAND_MEMORY_SAVE:
+                    memory = Operations.toMemory(result);
+                    break;
+                case COMMAND_MEMORY_PLUS:
+                    memory = Operations.addToMemory(result, memory);
+                    break;
+                case COMMAND_MEMORY_MINUS:
+                    memory = Operations.subFromMemory(result, memory);
+                    break;
+                case COMMAND_MEMORY_CLEAR:
+                    memory = Operations.memoryClear();
+                    break;
+                case LANGUAGE_EN:
+                    UserInterface.setLanguage(Language.EN);
+                    break;
+                case LANGUAGE_DE:
+                    UserInterface.setLanguage(Language.DE);
+                    break;
+                case LANGUAGE_FR:
+                    UserInterface.setLanguage(Language.FR);
+                    break;
+                case COMMAND_HELP:
+                    UserInterface.helpToConsole();
+                    break;
+                case COMMAND_EXIT:
+                    isNotExit = false;
+                    break;
             }
-            if (command.equalsIgnoreCase(Operators.OPERATOR_MINUS.values)){
-                operandOne = parsingInputData.parseOperandOne(inputText, command, memory);
-                operandTwo = parsingInputData.parseOperandTwo(inputText, command, memory);
-                result = operations.subToResult(operandOne, operandTwo);
-            }
-            if (command.equalsIgnoreCase(Operators.OPERATOR_MULTIPLY.values)){
-                operandOne = parsingInputData.parseOperandOne(inputText, command, memory);
-                operandTwo = parsingInputData.parseOperandTwo(inputText, command, memory);
-                result = operations.mulToResult(operandOne, operandTwo);
-            }
-            if (command.equalsIgnoreCase(Operators.OPERATOR_DIVIDE.values)){
-                operandOne = parsingInputData.parseOperandOne(inputText, command, memory);
-                operandTwo = parsingInputData.parseOperandTwo(inputText, command, memory);
-                result = operations.divToResult(operandOne, operandTwo);
-            }
-            if (command.equalsIgnoreCase(Commands.COMMAND_MEMORY_SAVE.values)){
-                memory = operations.toMemory(result);
-            }
-            if (command.equalsIgnoreCase(Commands.COMMAND_MEMORY_PLUS.values)){
-                memory = operations.addToMemory(result, memory);
-            }
-            if (command.equalsIgnoreCase(Commands.COMMAND_MEMORY_MINUS.values)){
-                memory = operations.subFromMemory(result, memory);
-            }
-            if (command.equalsIgnoreCase(Commands.COMMAND_MEMORY_CLEAR.values)){
-                memory = operations.memoryClear();
-            }
-            if (command.equalsIgnoreCase(Commands.LANGUAGE_EN.values)){
-                userInterface = new UserInterface(Language.EN);
-            }
-            if (command.equalsIgnoreCase(Commands.LANGUAGE_DE.values)){
-                userInterface = new UserInterface(Language.DE);
-            }
-            if (command.equalsIgnoreCase(Commands.LANGUAGE_FR.values)){
-                userInterface = new UserInterface(Language.FR);
-            }
-            if (command.equalsIgnoreCase(Commands.COMMAND_HELP.values)){
-                userInterface.helpToConsole();
-            }
-            if (command.equalsIgnoreCase(Commands.COMMAND_EXIT.values)){
-                isNotExit = false;
-            }
-
             if (isNotExit) {
                 if (memory == 0) {
-                    userInterface.resultToConsole(result);
+                    UserInterface.resultToConsole(result);
                 } else {
-                    userInterface.memoryToConsole(memory);
-                    userInterface.resultToConsole(result);
+                    UserInterface.memoryToConsole(memory);
+                    UserInterface.resultToConsole(result);
                 }
-                userInterface.promptToEnterData();
+                UserInterface.promptToEnterData();
             }
         } while (isNotExit);
     }
