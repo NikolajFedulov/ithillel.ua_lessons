@@ -1,6 +1,6 @@
 package ua.ithillel.lessons.lesson7;
 
-public class TaskLesson7 {
+public class TheNestingDepthOfVPS {
     public static void main(String[] args) {
         //String s1 = "(1+(2*3)+((8)/4))+1";
         //String s1 = ")1+(2*3)+((8)/4)(+1";

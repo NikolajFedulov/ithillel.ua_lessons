@@ -1,4 +1,4 @@
-package ua.ithillel.lessons.lesson7;
+package ua.ithillel.lessons.lesson7.model;
 
 public enum Operands {
     OPERAND_IS_MEMORY ("memory");
