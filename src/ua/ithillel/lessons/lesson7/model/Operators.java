@@ -5,7 +5,8 @@ public enum Operators {
     OPERATOR_PLUS ("+"),
     OPERATOR_MINUS ("-"),
     OPERATOR_MULTIPLY ("*"),
-    OPERATOR_DIVIDE ("/");
+    OPERATOR_DIVIDE ("/"),
+    NOT_OPERATOR ("not operator");
 
     public final String values;
 
