@@ -11,7 +11,8 @@ public enum Commands {
     LANGUAGE_EN ("en"),
     LANGUAGE_DE ("de"),
     LANGUAGE_FR ("fr"),
-    LANGUAGE_ITA ("ita");
+    LANGUAGE_ITA ("ita"),
+    NOT_COMMAND ("not command");
 
     public final String values;
 

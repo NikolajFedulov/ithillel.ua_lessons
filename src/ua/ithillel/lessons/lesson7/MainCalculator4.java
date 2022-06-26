@@ -1,9 +1,9 @@
 package ua.ithillel.lessons.lesson7;
 
-import ua.ithillel.lessons.lesson7.controller.Operations;
 import ua.ithillel.lessons.lesson7.controller.ParsingInputData;
-import ua.ithillel.lessons.lesson7.model.CommandsAndOperators;
+import ua.ithillel.lessons.lesson7.model.Commands;
 import ua.ithillel.lessons.lesson7.model.Language;
+import ua.ithillel.lessons.lesson7.model.Operators;
 import ua.ithillel.lessons.lesson7.view.UserInterface;
 
 import java.util.Scanner;
@@ -22,40 +22,19 @@ public class MainCalculator4 {
         UserInterface.promptToEnterData();
         do {
             String inputText = scanner.nextLine();
-            CommandsAndOperators command = ParsingInputData.parseCommand(inputText);
-
+            Commands command = ParsingInputData.parseCommand(inputText);
             switch (command) {
-                case OPERATOR_PLUS:
-                    operandOne = ParsingInputData.parseOperandOne(inputText, command, memory);
-                    operandTwo = ParsingInputData.parseOperandTwo(inputText, command, memory);
-                    result = Operations.addToResult(operandOne, operandTwo);
-                    break;
-                case OPERATOR_MINUS:
-                    operandOne = ParsingInputData.parseOperandOne(inputText, command, memory);
-                    operandTwo = ParsingInputData.parseOperandTwo(inputText, command, memory);
-                    result = Operations.subToResult(operandOne, operandTwo);
-                    break;
-                case OPERATOR_MULTIPLY:
-                    operandOne = ParsingInputData.parseOperandOne(inputText, command, memory);
-                    operandTwo = ParsingInputData.parseOperandTwo(inputText, command, memory);
-                    result = Operations.mulToResult(operandOne, operandTwo);
-                    break;
-                case OPERATOR_DIVIDE:
-                    operandOne = ParsingInputData.parseOperandOne(inputText, command, memory);
-                    operandTwo = ParsingInputData.parseOperandTwo(inputText, command, memory);
-                    result = Operations.divToResult(operandOne, operandTwo);
-                    break;
                 case COMMAND_MEMORY_SAVE:
-                    memory = Operations.toMemory(result);
+                    memory = result;
                     break;
                 case COMMAND_MEMORY_PLUS:
-                    memory = Operations.addToMemory(result, memory);
+                    memory = memory + result;
                     break;
                 case COMMAND_MEMORY_MINUS:
-                    memory = Operations.subFromMemory(result, memory);
+                    memory = memory - result;
                     break;
                 case COMMAND_MEMORY_CLEAR:
-                    memory = Operations.memoryClear();
+                    memory = 0.0;
                     break;
                 case LANGUAGE_EN:
                     UserInterface.setLanguage(Language.EN);
@@ -73,6 +52,30 @@ public class MainCalculator4 {
                     isNotExit = false;
                     break;
             }
+            Operators operator = ParsingInputData.parsOperator(inputText);
+            switch (operator) {
+                case OPERATOR_PLUS:
+                    operandOne = ParsingInputData.parseOperandOne(inputText, operator, memory);
+                    operandTwo = ParsingInputData.parseOperandTwo(inputText, operator, memory);
+                    result = operandOne + operandTwo;
+                    break;
+                case OPERATOR_MINUS:
+                    operandOne = ParsingInputData.parseOperandOne(inputText, operator, memory);
+                    operandTwo = ParsingInputData.parseOperandTwo(inputText, operator, memory);
+                    result = operandOne - operandTwo;
+                    break;
+                case OPERATOR_MULTIPLY:
+                    operandOne = ParsingInputData.parseOperandOne(inputText, operator, memory);
+                    operandTwo = ParsingInputData.parseOperandTwo(inputText, operator, memory);
+                    result = operandOne * operandTwo;
+                    break;
+                case OPERATOR_DIVIDE:
+                    operandOne = ParsingInputData.parseOperandOne(inputText, operator, memory);
+                    operandTwo = ParsingInputData.parseOperandTwo(inputText, operator, memory);
+                    result = operandOne / operandTwo;
+                    break;
+            }
+
             if (isNotExit) {
                 if (memory == 0) {
                     UserInterface.resultToConsole(result);
