@@ -1,4 +1,4 @@
-package ua.ithillel.lessons.lesson1;
+package ua.ithillel.lessons.lesson01;
 
 public class HelloWorld {
     public static void main(String[] args) {
