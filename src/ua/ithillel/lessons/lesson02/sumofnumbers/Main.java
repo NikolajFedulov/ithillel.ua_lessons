@@ -1,4 +1,4 @@
-package ua.ithillel.lessons.lesson2.sumofnumbers;
+package ua.ithillel.lessons.lesson02.sumofnumbers;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package ua.ithillel.lessons.lesson2.monobank21;
+package ua.ithillel.lessons.lesson02.monobank21;
 
 import java.util.Scanner;
 

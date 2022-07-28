@@ -1,4 +1,4 @@
-package ua.ithillel.lessons.lesson2.monobank2;
+package ua.ithillel.lessons.lesson02.monobank2;
 
 import java.util.Locale;
 import java.util.Scanner;
