@@ -1,4 +1,4 @@
-package ua.ithillel.lessons.lesson3;
+package ua.ithillel.lessons.lesson03;
 
 import java.util.Scanner;
 
